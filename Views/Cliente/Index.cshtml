@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Adicionar Cliente";
+}
+
+<h2>Adicionar Cliente</h2>
+
+<form asp-action="Create" method="post" class="mt-4">
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="Nome" name="Nome" required />
+    </div>
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" required />
+    </div>
+    <div class="mb-3">
+        <label for="Telefone" class="form-label">Telefone</label>
+        <input type="text" class="form-control" id="Telefone" name="Telefone" />
+    </div>
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+</form>
