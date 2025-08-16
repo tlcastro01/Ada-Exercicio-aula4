@@ -1,3 +1,4 @@
+@using aula4_exercicio.Models
 @model IEnumerable<Agencia>
 
 @{
@@ -32,10 +33,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th>CGC</th>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Telefone</th>
+            <th>@Html.DisplayNameFor(model => model.CGC)</th>
+            <th>@Html.DisplayNameFor(model => model.Nome)</th>
+            <th>@Html.DisplayNameFor(model => model.Endereco)</th>
+            <th>@Html.DisplayNameFor(model => model.Telefone)</th>
             <th>Ações</th>
         </tr>
     </thead>

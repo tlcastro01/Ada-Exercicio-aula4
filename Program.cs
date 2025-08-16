@@ -54,6 +54,17 @@ internal class Program
             name: "default",
             pattern: "{controller=Agencia}/{action=Index}/{id?}")
             .WithStaticAssets();
+        //RotasGet:
+        //http://localhost:porta/Agencia/Index
+        //http://localhost:porta/Cliente/Index
+        //http://localhost:porta/ContaCorrente/Index
+
+        //RotasPost:
+        //http://localhost:porta/Agencia/Adicionar/?CGC=8579&Nome=xyzfsdf&Endereco=rua%20x&Telefone=123456
+        //http://localhost:porta/Agencia/Deletar/?cgc=12345 
+        //http://localhost:porta/Cliente/Adicionar/Nome=tttt&Email=ttt%40ttt&Telefone=99999
+        //http://localhost:porta/Cliente/Deletar/?id=1
+        //http://localhost:porta/ContaCorrente/AbrirConta/?Numero=1&ClienteId=1&AgenciaCGC=4568
 
 
         app.Run();

@@ -1,21 +1,56 @@
+@using aula4_exercicio.Models
+@model IEnumerable<Cliente>
+
 @{
-    ViewData["Title"] = "Adicionar Cliente";
+    ViewData["Title"] = "Lista de Clientes";
 }
 
-<h2>Adicionar Cliente</h2>
+<h2>Lista de Clientes</h2>
 
-<form asp-action="Create" method="post" class="mt-4">
-    <div class="mb-3">
-        <label for="Nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="Nome" name="Nome" required />
+<!-- Formulário para adicionar cliente -->
+<form asp-action="Adicionar" method="post" class="mb-4">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" name="Nome" class="form-control" placeholder="Nome" required />
+        </div>
+        <div class="col-md-3">
+            <input type="email" name="Email" class="form-control" placeholder="Email" required />
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="Telefone" class="form-control" placeholder="Telefone" required />
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success">Adicionar Cliente</button>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="Email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="Email" name="Email" required />
-    </div>
-    <div class="mb-3">
-        <label for="Telefone" class="form-label">Telefone</label>
-        <input type="text" class="form-control" id="Telefone" name="Telefone" />
-    </div>
-    <button type="submit" class="btn btn-primary">Adicionar</button>
 </form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.Id</td>
+                <td>@cliente.Nome</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.Telefone</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@cliente.Id" class="btn btn-primary btn-sm">Editar</a>
+
+                    <form asp-action="Deletar" asp-route-id="@cliente.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar este cliente?');">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

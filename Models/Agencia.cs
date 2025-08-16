@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace aula4_exercicio.Models
@@ -14,5 +15,7 @@ namespace aula4_exercicio.Models
         public string? Endereco { get; set; }
         [Required]
         public string? Telefone { get; set; }
+
+        public ICollection<ContaCorrente>? ContasCorrentes { get; set; } // (uma agência possui várias contas) //Funciona?? O Entity Framework interpreta isso como uma relação um-para-muitos?
     }
 }

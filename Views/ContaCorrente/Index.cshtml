@@ -1,0 +1,55 @@
+@using aula4_exercicio.Models
+@model IEnumerable<ContaCorrente>
+
+@{
+    ViewData["Title"] = "Lista de Contas";
+}
+
+<h2>Lista de Contas</h2>
+
+<!-- Formulário para adicionar conta -->
+<form asp-action="AbrirConta" method="post" class="mb-4">
+    <div class="row">
+        <div class="col-md-2">
+            <input type="number" name="Numero" class="form-control" placeholder="Número" required />
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="AgenciaCGC" class="form-control" placeholder="CGC Agência" required />
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="ClienteId" class="form-control" placeholder="ID Cliente" required />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success">Abrir Conta</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>CGC Agência</th>
+            <th>ID Cliente</th>
+            <th>Saldo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contaCorrente in Model)
+        {
+            <tr>
+                <td>@contaCorrente.Numero</td>
+                <td>@contaCorrente.AgenciaCGC</td>
+                <td>@contaCorrente.ClienteId</td>
+                <td>
+                    <a asp-action="Edit" asp-route-numero="@contaCorrente.Numero" class="btn btn-primary btn-sm">Editar</a>
+
+                    <form asp-action="Deletar" asp-route-numero="@contaCorrente.Numero" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar esta conta?');">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
