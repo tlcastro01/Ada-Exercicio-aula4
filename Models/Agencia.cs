@@ -7,12 +7,12 @@ namespace aula4_exercicio.Models
 
         [Required]
         [Key]
-        public int cgc { get; set; }
+        public int CGC { get; set; }
         [Required]
-        public string Nome { get; set; }
+        public string? Nome { get; set; }
         [Required]
-        public string Endereco { get; set; }
+        public string? Endereco { get; set; }
         [Required]
-        public string Telefone { get; set; }
+        public string? Telefone { get; set; }
     }
 }

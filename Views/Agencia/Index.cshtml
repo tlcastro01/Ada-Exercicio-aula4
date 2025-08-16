@@ -1,0 +1,60 @@
+@model IEnumerable<Agencia>
+
+@{
+    ViewData["Title"] = "Lista de Agências";
+}
+
+<h2>Lista de Agências</h2>
+
+
+<!-- Formulário para adicionar agência -->
+<form asp-action="Adicionar" method="post" class="mb-4">
+    <div class="row">
+        <div class="col-md-2">
+            <input type="number" name="CGC" class="form-control" placeholder="CGC" required />
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="Nome" class="form-control" placeholder="Nome" required />
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="Endereco" class="form-control" placeholder="Endereço" required />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Telefone" class="form-control" placeholder="Telefone" required />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success">Adicionar Agência</button>
+        </div>
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>CGC</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var agencia in Model)
+        {
+            <tr>
+                <td>@agencia.CGC</td>
+                <td>@agencia.Nome</td>
+                <td>@agencia.Endereco</td>
+                <td>@agencia.Telefone</td>
+                <td>
+                    <a asp-action="Edit" asp-route-cgc="@agencia.CGC" class="btn btn-primary btn-sm">Editar</a>
+
+                    <form asp-action="Deletar" asp-route-cgc="@agencia.CGC" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar esta agência?');">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

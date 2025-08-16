@@ -11,7 +11,8 @@ namespace aula4_exercicio.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok("Lista de clientes");
+            //return Ok("Lista de clientes");
+            return View();
         }
 
         //Rota: https://localhost:porta/cliente/post/Objeto Cliente
