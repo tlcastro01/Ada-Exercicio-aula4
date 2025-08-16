@@ -54,6 +54,14 @@ namespace aula4_exercicio.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
+
+        public IActionResult Editar(Agencia agencia)
+        {
+            //faço depois
+            return Ok("");
+        }
+
 
     }
 }

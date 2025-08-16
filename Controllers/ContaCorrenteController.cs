@@ -47,5 +47,24 @@ namespace aula4_exercicio.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult Deletar(int numero)
+        {
+            var contaCorrente = _context.ContasCorrentes.Find(numero);
+            if (contaCorrente != null)
+            {
+                _context.ContasCorrentes.Remove(contaCorrente);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult Editar(ContaCorrente contaCorrente)
+        {
+            //faço depois
+            return Ok("");
+        }
+
     }
 }

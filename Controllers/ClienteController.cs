@@ -48,8 +48,6 @@ namespace aula4_exercicio.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
         // //Rota: https://localhost:porta/cliente/post/Objeto Cliente
         // [HttpPost]
         // public IActionResult Post([FromBody] object cliente)
@@ -65,6 +63,13 @@ namespace aula4_exercicio.Controllers
         //     // Lógica para adicionar cliente
         //     return Created("",id);
         // }
+
+        [HttpPost]
+        public IActionResult Editar(Cliente cliente)
+        {
+            //faço depois
+            return Ok("");
+        }
 
     }
 }
