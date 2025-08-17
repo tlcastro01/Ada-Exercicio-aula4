@@ -1,0 +1,29 @@
+@model IEnumerable<aula4_exercicio.Models.ContaCorrente>
+
+@{
+    ViewData["Title"] = "Listar Contas";
+}
+
+<h2>Listar Contas do Cliente</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente Id</th>
+            <th>Agência</th>
+            <th>Número da conta</th>
+            <th>Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var conta in Model)
+        {
+            <tr>
+                <td>@conta.ClienteId</td>
+                <td>@conta.AgenciaCGC</td>
+                <td>@conta.Numero </td>
+                <td>@conta.Saldo</td>
+            </tr>
+        }
+    </tbody>
+</table>

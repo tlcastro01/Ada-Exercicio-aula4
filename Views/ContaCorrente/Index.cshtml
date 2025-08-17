@@ -44,10 +44,10 @@
                 <td>@contaCorrente.ClienteId</td>
                 <td>@contaCorrente.Saldo</td>
                 <td>
-                    <a asp-action="Edit" asp-route-numero="@contaCorrente.Numero" class="btn btn-primary btn-sm">Editar</a>
+                    
 
                     <form asp-action="Deletar" asp-route-numero="@contaCorrente.Numero" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar esta conta?');">Deletar</button>
+                        <button type="AbrirConta" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar esta conta?');">Deletar/Encerrar</button>
                     </form>
                 </td>
             </tr>

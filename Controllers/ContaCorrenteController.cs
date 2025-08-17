@@ -3,68 +3,61 @@ using aula4_exercicio.Models;
 using aula4_exercicio.Data;
 
 
-namespace aula4_exercicio.Controllers
+namespace aula4_exercicio.Controllers;
+
+
+
+public class ContaCorrenteController : Controller
 {
+    private readonly Aula4DbContext _context;
 
-
-    public class ContaCorrenteController : Controller
+    public ContaCorrenteController(Aula4DbContext context)
     {
-        private readonly Aula4DbContext _context;
+        _context = context;
+    }
 
-        public ContaCorrenteController(Aula4DbContext context)
+    [HttpGet]
+    public IActionResult Index()
+    {
+        return View(_context.ContasCorrentes);
+    }
+
+    [HttpPost]
+    public IActionResult AbrirConta(ContaCorrente contaCorrente)
+    {
+
+        var agencia = _context.Agencias.Find(contaCorrente.AgenciaCGC);
+        var cliente = _context.Clientes.Find(contaCorrente.ClienteId);
+        var contaExistente = _context.ContasCorrentes.Find(contaCorrente.Numero);
+
+        // Verifica se a conta já existe
+        if (!ModelState.IsValid || cliente == null || agencia == null || contaExistente != null) 
         {
-            _context = context;
-        }
-
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View(_context.ContasCorrentes);
-        }
-
-        [HttpPost]
-        public IActionResult AbrirConta(ContaCorrente contaCorrente)
-        {
-
-            var agencia = _context.Agencias.Find(contaCorrente.AgenciaCGC);
-            var cliente = _context.Clientes.Find(contaCorrente.ClienteId);
-
-            // Verifica se a conta já existe
-            if (!ModelState.IsValid || cliente == null || agencia == null)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-
-
-            //_context.Clientes.Add(cliente);
-            //_context.SaveChanges();
-            _context.ContasCorrentes.Add(contaCorrente);
-            _context.SaveChanges();
-            //cliente.AbrirConta(_context, agencia);
-
-            return RedirectToAction(nameof(Index)); //Funciona??
-            //return Ok("Conta adicionada com sucesso!"); // Retorna uma mensagem de sucesso
-
-        }
-
-        [HttpPost]
-        public IActionResult Deletar(int numero)
-        {
-            var contaCorrente = _context.ContasCorrentes.Find(numero);
-            if (contaCorrente != null)
-            {
-                _context.ContasCorrentes.Remove(contaCorrente);
-                _context.SaveChanges();
-            }
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        public IActionResult Editar(ContaCorrente contaCorrente)
-        {
-            //faço depois
-            return Ok("");
-        }
+
+        //_context.Clientes.Add(cliente);
+        //_context.SaveChanges();
+        _context.ContasCorrentes.Add(contaCorrente);
+        _context.SaveChanges();
+        //cliente.AbrirConta(_context, agencia);
+
+        return RedirectToAction(nameof(Index)); //Funciona??
+        //return Ok("Conta adicionada com sucesso!"); // Retorna uma mensagem de sucesso
 
     }
+
+    [HttpPost]
+    public IActionResult Deletar(int numero)
+    {
+        var contaCorrente = _context.ContasCorrentes.Find(numero);
+        if (contaCorrente != null)
+        {
+            _context.ContasCorrentes.Remove(contaCorrente);
+            _context.SaveChanges();
+        }
+        return RedirectToAction(nameof(Index));
+    }
+
 }

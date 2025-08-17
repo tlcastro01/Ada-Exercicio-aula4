@@ -49,8 +49,8 @@
                 <td>@agencia.Endereco</td>
                 <td>@agencia.Telefone</td>
                 <td>
-                    <a asp-action="Edit" asp-route-cgc="@agencia.CGC" class="btn btn-primary btn-sm">Editar</a>
-
+                    <a asp-action="Editar" asp-route-cgc="@agencia.CGC" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="ListarContas" asp-route-cgc="@agencia.CGC" class="btn btn-primary btn-sm">Listar Contas</a>
                     <form asp-action="Deletar" asp-route-cgc="@agencia.CGC" method="post" style="display:inline;">
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar esta agência?');">Deletar</button>
                     </form>
